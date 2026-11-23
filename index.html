@@ -841,8 +841,8 @@
 
   <div class="nav-section">
     <div class="nav-label">Labs</div>
-    <a href="#lab1" class="nav-link">🔍 Lab 1 — Find &amp; Fix <span class="badge">45 min</span></a>
-    <a href="#lab2" class="nav-link">🚀 Lab 2 — Plan &amp; Build <span class="badge">45 min</span></a>
+    <a href="#lab1" class="nav-link">🔍 Lab 1 — Find &amp; Fix <span class="badge">15 min</span></a>
+    <a href="#lab2" class="nav-link">🚀 Lab 2 — Plan &amp; Build <span class="badge">10 min</span></a>
   </div>
 
   <div class="nav-section">
@@ -862,7 +862,7 @@
     <div class="hero-event-tag">⚡ Bluebox Workshop</div>
     <h1>AI-Powered Dev &amp; SRE Workflows<br><span>with Bluebox</span></h1>
     <div class="hero-meta">
-      <div class="hero-meta-item">⏱ <strong>90 minutes</strong></div>
+      <div class="hero-meta-item">⏱ <strong>25 minutes</strong></div>
       <div class="hero-meta-item">🎯 <strong>Developers &amp; SREs</strong></div>
       <div class="hero-meta-item">☁️ <strong>Runs in Codespace — nothing to install</strong></div>
     </div>
@@ -1011,7 +1011,7 @@
     <div class="lab-header">
       <div class="lab-number">1</div>
       <div>
-        <div class="section-eyebrow">Lab 1 · ~45 minutes</div>
+        <div class="section-eyebrow">Lab 1 · ~15 minutes</div>
         <div class="section-title" style="margin-bottom:4px;">Find &amp; Fix the Issue</div>
       </div>
     </div>
@@ -1227,7 +1227,7 @@ make down &amp;&amp; make up</pre>
     <div class="lab-header">
       <div class="lab-number">2</div>
       <div>
-        <div class="section-eyebrow">Lab 2 · ~45 minutes</div>
+        <div class="section-eyebrow">Lab 2 · ~10 minutes</div>
         <div class="section-title" style="margin-bottom:4px;">Plan Before You Prompt</div>
       </div>
     </div>
@@ -1377,28 +1377,6 @@ For each bottleneck you find, suggest what would need to change to handle 100× 
           </div>
           <pre>bluebox auth login</pre>
         </div>
-      </div>
-    </div>
-
-    <h3 class="subsection">GitHub &amp; Telemetry</h3>
-
-    <div class="step">
-      <div class="step-header">
-        <div class="step-num" style="background: var(--gray-mid); color: var(--dark);">?</div>
-        <div class="step-title">I'm not seeing my GitHub repository in Setup</div>
-      </div>
-      <div class="step-body">
-        <p>Confirm the Bluebox GitHub App is installed on the correct account. The Setup page will show an install prompt if the app is missing. Make sure you granted access to your forked repository specifically — granting access to "all repositories" also works.</p>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-header">
-        <div class="step-num" style="background: var(--gray-mid); color: var(--dark);">?</div>
-        <div class="step-title">Bluebox Setup shows telemetry as pending</div>
-      </div>
-      <div class="step-body">
-        <p>Leave the Setup page open — it updates automatically when your service sends its first traces. Make sure the app is running (<code>make clean</code> completed without errors) and that you set both <code>OTEL_EXPORTER_OTLP_ENDPOINT</code> and <code>OTEL_EXPORTER_OTLP_HEADERS</code> in the same terminal session before starting. Browse the shop app to generate some traffic — telemetry only flows when the app receives requests.</p>
       </div>
     </div>
 
