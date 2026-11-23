@@ -259,10 +259,6 @@
     flex-shrink: 0;
   }
 
-  .lab-number.optional {
-    background: var(--gray);
-  }
-
   /* ── Steps ────────────────────────────────── */
   .step {
     margin-bottom: 36px;
@@ -841,14 +837,12 @@
   <div class="nav-section">
     <div class="nav-label">Introduction</div>
     <a href="#overview" class="nav-link active">🗺️ Overview</a>
-    <a href="#connections" class="nav-link">🔌 Connections Setup</a>
   </div>
 
   <div class="nav-section">
     <div class="nav-label">Labs</div>
     <a href="#lab1" class="nav-link">🔍 Lab 1 — Find &amp; Fix <span class="badge">45 min</span></a>
     <a href="#lab2" class="nav-link">🚀 Lab 2 — Plan &amp; Build <span class="badge">45 min</span></a>
-    <a href="#lab3" class="nav-link">⭐ Lab 3 — Your Own App <span class="badge opt">Optional</span></a>
   </div>
 
   <div class="nav-section">
@@ -868,7 +862,7 @@
     <div class="hero-event-tag">⚡ Bluebox Workshop</div>
     <h1>AI-Powered Dev &amp; SRE Workflows<br><span>with Bluebox</span></h1>
     <div class="hero-meta">
-      <div class="hero-meta-item">⏱ <strong>90–120 minutes</strong></div>
+      <div class="hero-meta-item">⏱ <strong>90 minutes</strong></div>
       <div class="hero-meta-item">🎯 <strong>Developers &amp; SREs</strong></div>
       <div class="hero-meta-item">☁️ <strong>Runs in Codespace — nothing to install</strong></div>
     </div>
@@ -881,11 +875,6 @@
     <p class="section-intro">In this workshop you'll use Bluebox — an observability agent — alongside your coding agent to spin up a live ecommerce app, watch Bluebox investigate a real production problem in real time, and leverage those insights to code and deploy the fix. All driven by actual production telemetry rather than guesswork.</p>
 
     <div class="workflow">
-      <div class="workflow-step">
-        <div class="workflow-icon">🔌</div>
-        <span>Connect app to Bluebox</span>
-      </div>
-      <div class="workflow-arrow">→</div>
       <div class="workflow-step">
         <div class="workflow-icon">🔥</div>
         <span>Generate load &amp; break it</span>
@@ -924,11 +913,6 @@
         <h4>Lab 2 — Plan &amp; Build</h4>
         <p>Before writing a single line, your coding agent checks production health with Bluebox, uses live telemetry to plan a new feature, then predicts what breaks at 100× traffic before the marketing campaign goes live.</p>
       </div>
-      <div class="feature-card">
-        <div class="icon">⭐</div>
-        <h4>Optional Lab 3 — Your App</h4>
-        <p>Connect your own production app to Bluebox. Add OpenTelemetry, deploy, and start running the same workflows against your real services. Your Bluebox account is free to keep after the workshop.</p>
-      </div>
     </div>
 
     <h3 class="subsection">What is Bluebox?</h3>
@@ -961,316 +945,29 @@
 
     <p style="color: var(--gray); font-style: italic; font-size: 14px; margin-top: 4px; margin-bottom: 24px;">Bluebox is the missing production observability layer. It checks what your agent can't see, so you can merge with confidence.</p>
 
+    <h3 class="subsection">What's already set up for you</h3>
+    <p style="color: #374151; line-height: 1.75; margin-bottom: 12px;">The connections have been configured ahead of time, so you can go straight to the labs. Here's what's running in your environment:</p>
+    <div class="workflow" style="margin-bottom: 16px;">
+      <div class="workflow-step"><div class="workflow-icon">🐙</div><span>GitHub</span></div>
+      <div class="workflow-arrow">→</div>
+      <div class="workflow-step"><div class="workflow-icon">📦</div><span>Bluebox</span></div>
+      <div class="workflow-arrow">→</div>
+      <div class="workflow-step"><div class="workflow-icon">☁️</div><span>Codespace</span></div>
+    </div>
+    <ul style="color: #374151; line-height: 1.75; margin: 0 0 20px 20px;">
+      <li><strong>GitHub:</strong> a GitHub account (credentials provided at the workshop) with your own copy (fork) of the Workshop Shop repo. Bluebox files its investigation issues here.</li>
+      <li><strong>Bluebox:</strong> your workspace is connected to that GitHub repo. It receives OpenTelemetry data from the app and creates issues from its findings.</li>
+      <li><strong>Codespace:</strong> runs the Workshop Shop app, already sending telemetry to Bluebox, alongside VS Code in the browser.</li>
+      <li><strong>VS Code with GitHub Copilot:</strong> your coding agent, already connected to Bluebox so it can use production context when planning and fixing.</li>
+    </ul>
+
     <h3 class="subsection">The demo app: Workshop Shop</h3>
     <p style="color: #374151; line-height: 1.75; margin-bottom: 12px;">Workshop Shop is a small ecommerce app — products, a cart, checkout, and a payment service — backed by PostgreSQL. It has intentional production problems baked in, so you'll see exactly what Bluebox detects in real workloads.</p>
     <div class="callout tip">
       <div class="callout-icon">💡</div>
       <div class="callout-body">
         <div class="callout-label">No local setup required</div>
-        <p>Everything runs in a GitHub Codespace. You need a GitHub account and a browser — no installs required on your machine.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- CONNECTIONS                                 -->
-  <!-- ═══════════════════════════════════════════ -->
-  <section class="content-section" id="connections">
-    <div class="section-eyebrow">Getting Started</div>
-    <div class="section-title">Connections Setup</div>
-    <p class="section-intro">Before the labs, you'll connect three things: Bluebox, the demo app running in a Codespace, and your coding agent. Choose the path that matches your setup — you only need one.</p>
-
-    <!-- PATH CHOOSER -->
-    <div class="path-grid">
-      <div class="path-card primary">
-        <div class="path-tag recommended">Easiest</div>
-        <h4>🐙 GitHub Ecosystem</h4>
-        <p>Use GitHub Copilot as your coding agent inside VS Code in Codespace. Everything — app, agent, and code — stays in the browser.</p>
-      </div>
-      <div class="path-card">
-        <div class="path-tag alternative">BYO Agent</div>
-        <h4>🤖 BYO Agent</h4>
-        <p>Use any coding agent — Kiro IDE, Kiro Web, Claude Code, Cursor, or anything else. The demo app still runs in Codespace; your agent connects to Bluebox from your machine. You'll choose <strong>BYO Coding Agent</strong> in Step 4.</p>
-      </div>
-    </div>
-
-    <!-- STEP 1: Sign in to Bluebox -->
-    <div class="step">
-      <div class="step-header">
-        <div class="step-num">1</div>
-        <div class="step-title">Sign in to Bluebox</div>
-      </div>
-      <div class="step-body">
-        <ol class="steps-list">
-          <li>Go to <a href="https://bluebox.ai" target="_blank"><strong>bluebox.ai</strong></a>.</li>
-          <li>Select <strong>Sign in with GitHub</strong> and sign in with your GitHub account.</li>
-        </ol>
-
-        <div class="callout tip">
-          <div class="callout-icon">💡</div>
-          <div class="callout-body">
-            <div class="callout-label">New to Bluebox?</div>
-            <p>Bluebox automatically creates a default workspace when you sign up. You're good to go — continue to the next step.</p>
-          </div>
-        </div>
-
-        <div class="callout note">
-          <div class="callout-icon">ℹ️</div>
-          <div class="callout-body">
-            <div class="callout-label">Note</div>
-            <p>Today's lab uses Codespaces and the free tier of GitHub Copilot licenses. If you've already used up your allotted licensing before the workshop, you can spin up a new personal GitHub account to use today.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- STEP 2: Fork the repo -->
-    <div class="step">
-      <div class="step-header">
-        <div class="step-num">2</div>
-        <div class="step-title">Fork the demo app repo</div>
-      </div>
-      <div class="step-body">
-        <ol class="steps-list">
-          <li>Go to <a href="https://github.com/JasonOstroski/BlueboxWorkshop2026" target="_blank"><strong>github.com/JasonOstroski/BlueboxWorkshop2026</strong></a> and fork it to your personal GitHub account.</li>
-        </ol>
-        <img src="fork-repo.png" alt="GitHub repo page showing the Fork button and Create a new fork option" style="width: 100%; max-width: 680px; border-radius: 8px; border: 1px solid var(--gray-mid); margin: 12px 0 16px;" />
-        <ol class="steps-list" start="2">
-          <li>Go to your fork's <strong>Settings → General</strong>. Scroll down to <strong>Features</strong> and confirm:
-            <ul class="steps-list" style="margin-top: 6px;">
-              <li>The <strong>Issues</strong> feature — toggled on</li>
-              <li><strong>Issue permissions → Creation allowed by</strong> — set to <strong>All users</strong></li>
-            </ul>
-          </li>
-        </ol>
-        <img src="github-issues-settings.png" alt="GitHub Settings showing Issues enabled and creation allowed by all users" style="width: 100%; max-width: 680px; border-radius: 8px; border: 1px solid var(--gray-mid); margin: 12px 0 4px;" />
-        <div class="callout note">
-          <div class="callout-icon">ℹ️</div>
-          <div class="callout-body">
-            <div class="callout-label">Why fork?</div>
-            <p>You need your own fork so Bluebox can create issues and your coding agent can push branches and open pull requests.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- STEP 3: Connect GitHub to Bluebox -->
-    <div class="step">
-      <div class="step-header">
-        <div class="step-num">3</div>
-        <div class="step-title">Connect your fork to Bluebox</div>
-      </div>
-      <div class="step-body">
-        <ol class="steps-list">
-          <li>In Bluebox, go to <strong>Setup</strong> from the left sidebar.</li>
-          <li>Under <strong>Connect GitHub repositories</strong>, click <strong>Connect with GitHub</strong> and grant access to your <code>BlueboxWorkshop2026</code> fork.</li>
-        </ol>
-        <img src="bluebox-setup.png" alt="Bluebox Setup page showing the Connect GitHub repositories step with Connect with GitHub button" style="width: 100%; max-width: 680px; border-radius: 8px; border: 1px solid var(--gray-mid); margin: 12px 0 4px;" />
-        <div class="callout note">
-          <div class="callout-icon">ℹ️</div>
-          <div class="callout-body">
-            <div class="callout-label">Bluebox GitHub App</div>
-            <p>You may be prompted to install and configure access for the Bluebox GitHub App. Follow the prompts to authorize it for your personal account and grant access to your <code>BlueboxWorkshop2026</code> fork.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- STEP 4: Open Codespace & set up coding agent -->
-    <div class="step">
-      <div class="step-header">
-        <div class="step-num">4</div>
-        <div class="step-title">Open a Codespace and set up your coding agent</div>
-      </div>
-      <div class="step-body">
-        <p>GitHub Codespaces is a cloud-hosted development environment that runs directly in your browser. It gives you a full VS Code editor, a terminal, and a running Linux environment — no local setup needed. For this workshop, it's where the demo app will run (and if you chose, where you'll run your IDE and coding agent).</p>
-        <ol class="steps-list">
-          <li>On your fork's GitHub page, click <strong>Code → Codespaces → Create codespace on main</strong>.</li>
-        </ol>
-        <img src="codespace-create.png" alt="GitHub Code menu showing Codespaces tab with Create a codespace on main option" style="width: 100%; max-width: 680px; border-radius: 8px; border: 1px solid var(--gray-mid); margin: 12px 0 16px;" />
-        <div class="tab-group">
-          <div class="tab-bar">
-            <button class="tab-btn active" onclick="switchTab(this,'tab-copilot')">GitHub Copilot</button>
-            <button class="tab-btn" onclick="switchTab(this,'tab-other')">BYO Coding Agent</button>
-          </div>
-
-          <!-- COPILOT -->
-          <div class="tab-content active" id="tab-copilot">
-            <p>GitHub Copilot runs directly inside the VS Code Codespace — no separate install needed.</p>
-            <ol class="steps-list">
-              <li>Install the Bluebox CLI in your Codespace terminal:</li>
-            </ol>
-            <div class="code-block" style="margin-bottom: 12px;">
-              <div class="code-block-header">
-                <span class="code-lang">bash — Codespace terminal</span>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              </div>
-              <pre>curl -fsSL https://app.bluebox.ai/install.sh | bash</pre>
-            </div>
-            <div class="callout warning">
-              <div class="callout-icon">⚠️</div>
-              <div class="callout-body">
-                <div class="callout-label">Terminal is too small?</div>
-                <p>If you see a "Terminal is too small for Bluebox setup" message, resize your terminal window to be larger, then enter <code>r</code> to retry.</p>
-              </div>
-            </div>
-            <ol class="steps-list" start="2">
-              <li>Follow the prompts. It will ask you to open another browser window and paste a code from your terminal for authentication.</li>
-            </ol>
-            <div class="callout warning">
-              <div class="callout-icon">⚠️</div>
-              <div class="callout-body">
-                <div class="callout-label">Navigating the CLI setup</div>
-                <p>During the interactive setup: use <code>Space</code> to select or toggle an option, and <code>Enter</code> to confirm and move to the next step.</p>
-              </div>
-            </div>
-            <ol class="steps-list" start="3">
-              <li>Continue following the installer to set up Bluebox with <strong>GitHub Copilot</strong>. Install skills <strong>per-repo</strong> — we're only using this Codespace for this app.</li>
-            </ol>
-            <img src="bluebox-coding-agent-skills.png" alt="Bluebox CLI setup showing coding agent and skills selection screen" style="width: 100%; max-width: 680px; border-radius: 8px; border: 1px solid var(--gray-mid); margin: 8px 0 16px;" />
-            <ol class="steps-list" start="4">
-              <li>Select <strong>Install the Skills Only</strong> (not Skills + OTel Template) and ensure your forked repo is checked.</li>
-            </ol>
-            <img src="bluebox-skills-only.png" alt="Bluebox CLI local repositories screen showing Skills only selected and forked repo checked" style="width: 100%; max-width: 680px; border-radius: 8px; border: 1px solid var(--gray-mid); margin: 8px 0 16px;" />
-            <ol class="steps-list" start="5">
-              <li>Once complete you should see the Bluebox Setup Summary.</li>
-            </ol>
-            <img src="bluebox-setup-summary.png" alt="Bluebox setup summary showing GitHub connected, Copilot per-repo skills installed, and instrumentation skipped" style="width: 100%; max-width: 680px; border-radius: 8px; border: 1px solid var(--gray-mid); margin: 8px 0 16px;" />
-            <ol class="steps-list" start="6">
-              <li>Verify GitHub Copilot is able to leverage Bluebox by asking in Coding Agent Chat:</li>
-            </ol>
-            <div class="prompt-box">
-              <div class="prompt-label">Coding Agent Chat</div>
-              <p>What Bluebox skills are available?</p>
-            </div>
-            <div class="callout success">
-              <div class="callout-icon">✅</div>
-              <div class="callout-body">
-                <div class="callout-label">What to expect</div>
-                <p>You should see the Bluebox skills listed in the chat response, and a new <code>.github/prompts/</code> folder will appear in your repo with the installed skill files.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- BYO CODING AGENT -->
-          <div class="tab-content" id="tab-other">
-            <p>Any coding agent that can run shell commands or call MCP tools can work with Bluebox. The key steps are:</p>
-            <ol class="steps-list">
-              <li>Install the Bluebox CLI in your agent's environment: <code>curl -fsSL https://app.bluebox.ai/install.sh | bash</code></li>
-              <li>Run <code>bluebox setup</code> to authenticate and select the workshop workspace.</li>
-              <li>The CLI installs Bluebox skills into any supported agent it detects. For unsupported agents, ask your agent to run <code>bluebox ask "your question"</code> to query production data directly.</li>
-            </ol>
-          </div>
-        </div>
-        <div class="callout tip" style="margin-top: 16px;">
-          <div class="callout-icon">💡</div>
-          <div class="callout-body">
-            <div class="callout-label">Connecting your agent to Bluebox production data</div>
-            <p>When you're asked to query production in the labs, use the prompt: <em>"Using Bluebox, [your question here]"</em> — your agent will use the Bluebox skills or CLI to query live data.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- STEP 5: Configure Telemetry -->
-    <div class="step">
-      <div class="step-header">
-        <div class="step-num">5</div>
-        <div class="step-title">Configure Telemetry</div>
-      </div>
-      <div class="step-body">
-        <div class="callout tip">
-          <div class="callout-icon">💡</div>
-          <div class="callout-body">
-            <div class="callout-label">How OTel works with Bluebox</div>
-            <p>When using your own app, Bluebox's instrumentation skill can automatically add OpenTelemetry to your project to get runtime metrics, logs, and traces.</p>
-            <p>In this demo app, OTel is already wired up — you just need to add your connection details so it points to your Bluebox instance.</p>
-          </div>
-        </div>
-        <ol class="steps-list">
-          <li>In the Bluebox sidebar, go to <strong>Setup</strong>.</li>
-          <li>Navigate to <strong>Instrument your services</strong>.</li>
-          <li>Copy your <strong>OpenTelemetry endpoint</strong> and <strong>ingest token</strong>.</li>
-        </ol>
-        <img src="bluebox-otel.png" alt="Bluebox Setup showing the Instrument your services section with OTLP endpoint and ingest token" style="width: 100%; max-width: 680px; border-radius: 8px; border: 1px solid var(--gray-mid); margin: 8px 0 16px;" />
-        <ol class="steps-list" start="4">
-          <li>In the Codespace terminal, set both variables and start the app. Make sure to include <code>Authorization=Bearer</code> in the ingest token:</li>
-        </ol>
-
-        <div class="callout warning">
-          <div class="callout-icon">⚠️</div>
-          <div class="callout-body">
-            <div class="callout-label">Never commit the ingest token</div>
-            <p>Set it as an environment variable only. Do not paste it into any file in your repository — your coding agent or Bluebox CLI will never ask you to.</p>
-          </div>
-        </div>
-
-        <div class="code-block">
-          <div class="code-block-header">
-            <span class="code-lang">bash</span>
-            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-          </div>
-          <pre><span class="comment"># Paste your values — the endpoint can also be fetched by the CLI</span>
-<span class="cmd">export</span> OTEL_EXPORTER_OTLP_ENDPOINT=<span class="str">"https://&lt;your-endpoint-from-bluebox-setup&gt;"</span>
-
-<span class="comment"># Paste the full header value from Bluebox Setup (do not include angle brackets)</span>
-<span class="cmd">export</span> OTEL_EXPORTER_OTLP_HEADERS=<span class="str">"&lt;header value from Bluebox Setup&gt;"</span>
-
-<span class="comment"># Start the app (pulls images, waits for readiness)</span>
-make up</pre>
-        </div>
-
-        <ol class="steps-list" start="5">
-          <li>When startup succeeds you'll see all of the containers up and healthy.</li>
-        </ol>
-        <img src="app-running.png" alt="Codespace terminal showing all containers started and healthy after make up" style="width: 100%; max-width: 680px; border-radius: 8px; border: 1px solid var(--gray-mid); margin: 8px 0 16px;" />
-        <ol class="steps-list" start="6">
-          <li>Open the <strong>Ports</strong> panel in your Codespace.</li>
-          <li>Click <strong>Add Port</strong>, type <code>8088</code>.<br>Click the forwarded address for port <code>8088</code> to open the shop in your browser.</li>
-        </ol>
-        <img src="ports-panel.png" alt="Codespace Ports panel showing port 8088 forwarded with Open in Browser option" style="width: 100%; max-width: 680px; border-radius: 8px; border: 1px solid var(--gray-mid); margin: 8px 0 12px;" />
-        <p>You should see products listed on the homepage.</p>
-        <img src="shop-homepage.png" alt="Workshop Shop homepage showing products listed" style="width: 100%; max-width: 680px; border-radius: 8px; border: 1px solid var(--gray-mid); margin: 8px 0 4px;" />
-      </div>
-    </div>
-
-    <!-- STEP 6: Verify telemetry -->
-    <div class="step">
-      <div class="step-header">
-        <div class="step-num">6</div>
-        <div class="step-title">Verify telemetry is flowing</div>
-      </div>
-      <div class="step-body">
-        <ol class="steps-list">
-          <li>Browse the shop at the Codespace port 8088 address — add products to the cart, navigate around, and do a checkout to generate some traffic. Click around for a minute or two.
-            <div class="callout note" style="margin-top: 10px;">
-              <div class="callout-icon">ℹ️</div>
-              <div class="callout-body">
-                <div class="callout-label">Need the shop URL?</div>
-                <p>In your Codespace, open the <strong>Ports</strong> panel and click the forwarded address next to port <code>8088</code>.</p>
-              </div>
-            </div>
-          </li>
-          <li>Verify telemetry is flowing — open the <strong>Bluebox Setup page</strong> and confirm the checklist shows a green checkmark next to "Telemetry received". It can take a few minutes for telemetry to be available in Bluebox. If you don't initially see telemetry, click around for a minute or two more then check back.</li>
-        </ol>
-        <img src="bluebox-telemetry-flowing.png" alt="Bluebox fully set up with all steps complete and telemetry received" style="max-width:100%;border-radius:8px;border:1px solid #e5e7eb;margin:10px 0;">
-        <ol class="steps-list" start="3">
-          <li>Open a new Bluebox chat (click <strong>+ New</strong> in the upper left of the Bluebox UI, then select <strong>Chat</strong>) and ask:</li>
-        </ol>
-        <div class="prompt-box">
-          <div class="prompt-label">Bluebox chat</div>
-          <p>What is the current response time for my shop service?</p>
-        </div>
-
-        <div class="checklist">
-          <h4>✅ Connections Checkpoint</h4>
-          <div class="checklist-item"><div class="check-box"></div><span>Bluebox account created and workshop workspace joined</span></div>
-          <div class="checklist-item"><div class="check-box"></div><span>Demo app forked and connected to Bluebox</span></div>
-          <div class="checklist-item"><div class="check-box"></div><span>Codespace running the workshop application</span></div>
-          <div class="checklist-item"><div class="check-box"></div><span>OTel env vars set and app started with <code>make up</code></span></div>
-          <div class="checklist-item"><div class="check-box"></div><span>Telemetry confirmed in Bluebox Setup page</span></div>
-          <div class="checklist-item"><div class="check-box"></div><span>Confirmed telemetry via Bluebox Chat</span></div>
-        </div>
+        <p>Everything runs in a GitHub Codespace. You'll be given GitHub credentials at the workshop — all you need is a browser, with nothing to install on your machine.</p>
       </div>
     </div>
   </section>
@@ -1642,167 +1339,6 @@ For each bottleneck you find, suggest what would need to change to handle 100× 
   </section>
 
   <!-- ═══════════════════════════════════════════ -->
-  <!-- LAB 3 (OPTIONAL)                            -->
-  <!-- ═══════════════════════════════════════════ -->
-  <section class="content-section" id="lab3">
-    <div class="lab-header">
-      <div class="lab-number optional">★</div>
-      <div>
-        <div class="section-eyebrow">Optional Lab 3 — If you have time</div>
-        <div class="section-title" style="margin-bottom:4px;">Turn Bluebox on Your Own App</div>
-      </div>
-    </div>
-    <p class="section-intro">If you have a real app — at work or a side project — try connecting it to Bluebox. Everything you set up here is yours to keep: the Bluebox account is free to use after the workshop with no expiry date.</p>
-
-    <div class="callout tip">
-      <div class="callout-icon">💡</div>
-      <div class="callout-body">
-        <div class="callout-label">Your free tier</div>
-        <p>The Bluebox account you created today is free to keep — no time limit, no credit card required. Everything you set up in this lab will continue working after you leave today.</p>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-header">
-        <div class="step-num">1</div>
-        <div class="step-title">Connect your GitHub repository</div>
-      </div>
-      <div class="step-body">
-        <p>In your Bluebox workspace, go to <strong>Settings → Setup</strong>:</p>
-        <ul class="steps-list">
-          <li>Under GitHub, authorize Bluebox for the organization or account that owns your app's repo</li>
-          <li>Find and select your application's repository</li>
-          <li>Click <strong>Confirm 1 repo</strong></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-header">
-        <div class="step-num">2</div>
-        <div class="step-title">Clone your repo in your coding agent and run Bluebox setup</div>
-      </div>
-      <div class="step-body">
-        <p>Open your repository in your coding agent of choice. You can install the Bluebox CLI by asking your agent directly:</p>
-        <div class="prompt-box">
-          <div class="prompt-label">Coding agent prompt</div>
-          <p>Install Bluebox CLI from https://app.bluebox.ai without piping a remote script into a shell. Download the installer for your platform — https://app.bluebox.ai/install.sh for macOS/Linux, https://app.bluebox.ai/install.ps1 for Windows PowerShell, or https://app.bluebox.ai/install.cmd for Windows Command Prompt — to a local file, show me what it will do, then run it to start Bluebox setup.</p>
-        </div>
-        <p>Or install it yourself directly in your terminal:</p>
-        <div class="tab-group" style="margin-top: 12px;">
-          <div class="tab-bar">
-            <button class="tab-btn active" onclick="switchTab(this,'tab-install-mac')">macOS / Linux</button>
-            <button class="tab-btn" onclick="switchTab(this,'tab-install-ps')">Windows PowerShell</button>
-            <button class="tab-btn" onclick="switchTab(this,'tab-install-cmd')">Windows CMD</button>
-          </div>
-          <div class="tab-content active" id="tab-install-mac">
-            <div class="code-block">
-              <div class="code-block-header">
-                <span class="code-lang">bash</span>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              </div>
-              <pre>curl -fsSL https://app.bluebox.ai/install.sh | bash</pre>
-            </div>
-          </div>
-          <div class="tab-content" id="tab-install-ps">
-            <div class="code-block">
-              <div class="code-block-header">
-                <span class="code-lang">powershell</span>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              </div>
-              <pre>irm https://app.bluebox.ai/install.ps1 | iex</pre>
-            </div>
-          </div>
-          <div class="tab-content" id="tab-install-cmd">
-            <div class="code-block">
-              <div class="code-block-header">
-                <span class="code-lang">cmd</span>
-                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-              </div>
-              <pre>curl -fsSL https://app.bluebox.ai/install.cmd -o install.cmd && install.cmd && del install.cmd</pre>
-            </div>
-          </div>
-        </div>
-        <p>Bluebox will confirm the connection and install its skills into your coding agent.</p>
-        <div class="callout tip">
-          <div class="callout-icon">💡</div>
-          <div class="callout-body">
-            <div class="callout-label">Keeping the CLI up to date</div>
-            <p>To update the CLI later, run <code>bluebox update</code> or re-run the installer command above — both update to the latest version.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-header">
-        <div class="step-num">3</div>
-        <div class="step-title">Instrument your app with OpenTelemetry</div>
-      </div>
-      <div class="step-body">
-        <p>Paste this prompt into your coding agent to add OpenTelemetry instrumentation:</p>
-        <div class="prompt-box">
-          <div class="prompt-label">Coding agent prompt</div>
-          <p>Add OpenTelemetry to this project — use the Bluebox instrumentation skill</p>
-        </div>
-        <p>Your agent will use the installed Bluebox instrumentation skill to wire up the OTel SDK for your language and framework. It will:</p>
-        <ul class="steps-list">
-          <li>Add the required OTel dependencies</li>
-          <li>Configure your service to export traces to Bluebox's OTLP endpoint</li>
-          <li>Fetch the endpoint automatically using <code>bluebox otlp-endpoint</code></li>
-        </ul>
-        <div class="callout warning">
-          <div class="callout-icon">⚠️</div>
-          <div class="callout-body">
-            <div class="callout-label">Ingest token</div>
-            <p>Your ingest token is intentionally kept out of files and CLI output. Copy it from the Bluebox Setup page and provide it as an environment variable or secret — never commit it to your repository.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-header">
-        <div class="step-num">4</div>
-        <div class="step-title">Merge and redeploy your app</div>
-      </div>
-      <div class="step-body">
-        <p>Review the instrumentation changes your agent made, merge the PR, and redeploy your application to your hosting environment.</p>
-        <p>Once it's running, return to the Bluebox Setup page — it will confirm when telemetry data arrives. The Overview page will then show your services, and any active problems will appear as Findings automatically.</p>
-        <div class="callout note">
-          <div class="callout-icon">ℹ️</div>
-          <div class="callout-body">
-            <div class="callout-label">Setup page shows pending</div>
-            <p>If the Setup page shows the connection as pending, leave it open — telemetry confirmation updates automatically once your service sends its first traces.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-header">
-        <div class="step-num">5</div>
-        <div class="step-title">Explore — your app, your way</div>
-      </div>
-      <div class="step-body">
-        <p>You're now connected. The same workflows from Labs 1 and 2 apply to your real production system. Try any of these:</p>
-        <ul class="steps-list">
-          <li><strong>Investigate a real problem:</strong> Click Investigate on any Finding on the Overview page, or start a new investigation from the sidebar and describe an issue you've been meaning to look into.</li>
-          <li><strong>Ask your coding agent about production:</strong> <em>"Using Bluebox, what are the most common errors in our app over the last 7 days?"</em> — your agent queries live telemetry and gives you answers grounded in what's actually happening.</li>
-          <li><strong>Plan a new feature:</strong> Describe something you've been wanting to build, ask your agent to query production first, and let it draft an architecture plan grounded in your real service behavior.</li>
-        </ul>
-        <div class="callout tip">
-          <div class="callout-icon">💡</div>
-          <div class="callout-body">
-            <div class="callout-label">Your free tier — no expiry</div>
-            <p>Your Bluebox account includes ongoing access to findings, investigations, and production queries. You can continue using it for your own projects after the workshop with no expiry date and no credit card required.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════ -->
   <!-- TROUBLESHOOTING                             -->
   <!-- ═══════════════════════════════════════════ -->
   <section class="content-section" id="troubleshooting">
@@ -1907,7 +1443,7 @@ For each bottleneck you find, suggest what would need to change to handle 100× 
   }
 
   // ── Active nav on scroll ─────────────────────────────
-  const sections = ['connections', 'lab1', 'lab2', 'lab3'];
+  const sections = ['lab1', 'lab2'];
   const navLinks = document.querySelectorAll('.nav-link');
 
   const observer = new IntersectionObserver((entries) => {
@@ -1921,7 +1457,7 @@ For each bottleneck you find, suggest what would need to change to handle 100× 
   }, { threshold: 0.25 });
 
   document.querySelectorAll('[id]').forEach(el => {
-    if (['overview','connections','lab1','lab2','lab3'].includes(el.id)) observer.observe(el);
+    if (['overview','lab1','lab2'].includes(el.id)) observer.observe(el);
   });
 
   // ── Close sidebar on mobile nav click ────────────────
