@@ -894,6 +894,11 @@
         <div class="workflow-icon">🤖</div>
         <span>Coding agent fixes &amp; PRs</span>
       </div>
+      <div class="workflow-arrow">→</div>
+      <div class="workflow-step">
+        <div class="workflow-icon">✅</div>
+        <span>Validate with Bluebox</span>
+      </div>
     </div>
 
     <h3 class="subsection">What's in this workshop</h3>
@@ -901,7 +906,7 @@
       <div class="feature-card">
         <div class="icon">🔍</div>
         <h4>Lab 1 — Find &amp; Fix</h4>
-        <p>Generate load on a broken app, watch Bluebox investigate the root cause, create a GitHub issue from the findings, and have your coding agent write the fix and open a pull request — grounded in production evidence.</p>
+        <p>Generate load on a broken app, watch Bluebox investigate the root cause, create a GitHub issue from the findings, and have your coding agent write and deploy the fix — grounded in production evidence.</p>
       </div>
       <div class="feature-card">
         <div class="icon">🚀</div>
@@ -1152,13 +1157,72 @@ Any PRs should be written to my fork of the repo, not the original repo.</p>
       </div>
     </div>
 
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">6</div>
+        <div class="step-title">Merge and redeploy</div>
+      </div>
+      <div class="step-body">
+        <ol class="steps-list">
+          <li>Review the pull request your agent created — check the code changes and confirm the fix addresses the root cause Bluebox identified.</li>
+        </ol>
+        <div class="callout warning">
+          <div class="callout-icon">⚠️</div>
+          <div class="callout-body">
+            <div class="callout-label">Merge the PR first</div>
+            <p>Before running the commands below, <strong>merge the PR on GitHub</strong>. The <code>git checkout main &amp;&amp; git pull --ff-only origin main</code> command will only pick up the fix once it's merged into your main branch.</p>
+          </div>
+        </div>
+        <ol class="steps-list" start="2">
+          <li>Once merged, redeploy in the Codespace:</li>
+        </ol>
+        <div class="code-block">
+          <div class="code-block-header">
+            <span class="code-lang">bash — Codespace terminal</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre><span class="comment"># Pull the merged fix and restart</span>
+git checkout main &amp;&amp; git pull --ff-only origin main
+make down &amp;&amp; make up</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-header">
+        <div class="step-num">7</div>
+        <div class="step-title">Validate the fix with Bluebox</div>
+      </div>
+      <div class="step-body">
+        <ol class="steps-list">
+          <li>Run the load generator again:</li>
+        </ol>
+        <div class="code-block">
+          <div class="code-block-header">
+            <span class="code-lang">bash</span>
+            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+          </div>
+          <pre>make load</pre>
+        </div>
+        <ol class="steps-list" start="2">
+          <li>Browse the app in your browser and confirm products load normally.</li>
+          <li>In the Bluebox UI, verify the fix by asking the below question either in the bottom of the previous investigation or in a new chat:</li>
+        </ol>
+        <div class="prompt-box">
+          <div class="prompt-label">Bluebox chat</div>
+          <p>Is the shop API healthy now? Compare the error rate and latency before and after recent merge and app restart.</p>
+        </div>
+      </div>
+    </div>
+
     <div class="checklist">
       <h4>✅ Lab 1 Checkpoint</h4>
       <div class="checklist-item"><div class="check-box"></div><span>Load generated and browser showed product catalog failure</span></div>
       <div class="checklist-item"><div class="check-box"></div><span>Bluebox investigation completed with root cause identified</span></div>
       <div class="checklist-item"><div class="check-box"></div><span>GitHub issue created from investigation</span></div>
       <div class="checklist-item"><div class="check-box"></div><span>Coding agent referenced Bluebox data to write the fix</span></div>
-      <div class="checklist-item"><div class="check-box"></div><span>Pull request created with the fix</span></div>
+      <div class="checklist-item"><div class="check-box"></div><span>PR merged and app redeployed</span></div>
+      <div class="checklist-item"><div class="check-box"></div><span>Bluebox confirms error rate resolved</span></div>
     </div>
   </section>
 
