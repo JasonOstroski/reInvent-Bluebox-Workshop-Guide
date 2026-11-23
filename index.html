@@ -991,11 +991,19 @@
     <div class="step">
       <div class="step-header">
         <div class="step-num">1</div>
-        <div class="step-title">Generate load and try the app</div>
+        <div class="step-title">Open the shop, then generate load</div>
       </div>
       <div class="step-body">
+        <p>First, see what the app looks like when it's healthy.</p>
         <ol class="steps-list">
-          <li>Open a <strong>second terminal</strong> in the Codespace and run the load generator:</li>
+          <li>Open the <strong>Ports</strong> panel in your Codespace.</li>
+          <li>Click <strong>Add Port</strong>, type <code>8088</code>.<br>Click the forwarded address for port <code>8088</code> to open the shop in your browser.</li>
+        </ol>
+        <img src="ports-panel.png" alt="Codespace Ports panel showing port 8088 forwarded with Open in Browser option" style="width: 100%; max-width: 680px; border-radius: 8px; border: 1px solid var(--gray-mid); margin: 8px 0 12px;" />
+        <p>You should see products listed on the homepage. Add a few to the cart and click around — this is the baseline experience.</p>
+        <img src="shop-homepage.png" alt="Workshop Shop homepage showing products listed" style="width: 100%; max-width: 680px; border-radius: 8px; border: 1px solid var(--gray-mid); margin: 8px 0 12px;" />
+        <ol class="steps-list" start="3">
+          <li>Now open a <strong>second terminal</strong> in the Codespace and run the load generator:</li>
         </ol>
         <div class="code-block">
           <div class="code-block-header">
@@ -1004,8 +1012,8 @@
           </div>
           <pre>make load</pre>
         </div>
-        <ol class="steps-list" start="2">
-          <li>While it runs, open the shop in your browser and try to browse products. You should see the product list <strong>fail to load</strong> — the page goes blank or shows an error.</li>
+        <ol class="steps-list" start="4">
+          <li>While it runs, refresh the shop in your browser and try to browse products. You should see the product list <strong>fail to load</strong> — the page goes blank or shows an error.</li>
         </ol>
         <p>The app will recover once the load generator stops after its 60s run. This scenario is one that happens all the time — <em>"It works on my laptop"</em> — but the real problems only surface once production load hits the app.</p>
         <div class="callout tip">
