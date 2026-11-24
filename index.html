@@ -1034,6 +1034,13 @@
         <img src="ports-panel.png" alt="Codespace Ports panel showing port 8088 forwarded with Open in Browser option" style="width: 100%; max-width: 680px; border-radius: 8px; border: 1px solid var(--gray-mid); margin: 8px 0 12px;" />
         <p>You should see products listed on the homepage. Add a few to the cart and click around — this is the baseline experience.</p>
         <img src="shop-homepage.png" alt="Workshop Shop homepage showing products listed" style="width: 100%; max-width: 680px; border-radius: 8px; border: 1px solid var(--gray-mid); margin: 8px 0 12px;" />
+        <div class="callout note">
+          <div class="callout-icon">ℹ️</div>
+          <div class="callout-body">
+            <div class="callout-label">App not loading?</div>
+            <p>If the app is not available or throws a 401, run <code>make down</code> in the terminal and wait for all of the containers to show as removed. Then run <code>make up</code>, wait for all of the containers to be started and healthy, and try navigating to the site again.</p>
+          </div>
+        </div>
         <ol class="steps-list" start="3">
           <li>Now open the terminal in the Codespace and run the load generator:</li>
         </ol>
